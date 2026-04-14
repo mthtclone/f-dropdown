@@ -1,0 +1,43 @@
+{
+  "name": "@mthtclone/f-dropdown",
+  "version": "1.0.0",
+  "description": "A lightweight nested dropdown Web Component",
+  "keywords": [
+    "web-components",
+    "dropdown",
+    "ui",
+    "form",
+    "nested"
+  ],
+  "license": "MIT",
+  "author": "mthtclone",
+  "type": "module",
+  "exports": {
+    ".": "./dist/f-dropdown.js"
+  },
+  "main": "./dist/f-dropdown.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "detect-libc": "^2.1.2",
+    "fdir": "^6.5.0",
+    "lightningcss": "^1.32.0",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
+    "nanoid": "^3.3.11",
+    "picocolors": "^1.1.1",
+    "picomatch": "^4.0.4",
+    "postcss": "^8.5.9",
+    "rolldown": "^1.0.0-rc.15",
+    "source-map-js": "^1.2.1",
+    "tinyglobby": "^0.2.16",
+    "tslib": "^2.8.1",
+    "vite": "^8.0.8"
+  },
+  "devDependencies": {},
+  "module": "./dist/f-dropdown.js"
+}
