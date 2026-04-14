@@ -8,6 +8,7 @@ npm install f-dropdown
 
 ## Usage
 
+```
 import "f-dropdown";
 
 <f-dropdown name="department">
@@ -17,6 +18,7 @@ import "f-dropdown";
     <f-option value="cs">CS</f-option>
   </f-group>
 </f-dropdown>
+```
 
 ## Features
 
