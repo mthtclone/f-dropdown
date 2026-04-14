@@ -1,6 +1,6 @@
 {
   "name": "@mthtclone/f-dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight nested dropdown Web Component",
   "keywords": [
     "web-components",
