@@ -4,12 +4,12 @@ A lightweight Web Component for nested dropdowns.
 
 ## Install
 
-npm install f-dropdown
+npm install @mthtclone/f-dropdown
 
 ## Usage
 
 ```
-import "f-dropdown";
+import "@mthtclone/f-dropdown";
 
 <f-dropdown name="department">
   Select Department
@@ -96,6 +96,45 @@ You can still style the component using CSS variable directly.
 | --f-dropdown-hover          	| Hover state        	| #f2f2f2  	|
 | --f-dropdown-active-bg      	| Active item        	| #e6f0ff  	|
 | --f-dropdown-active-outline 	| Active outline     	| #4c8dff  	|
+
+## Form Validation
+The `<f-dropdown>` component now includes built-in form compatibility and validation utilities, making it usable both as a flexible UI component and a form-aware field when needed.
+
+Each dropdown maintains its own internal value state. You can read or set the selected value directly.
+
+```js
+const dropdown = document.querySelector('f-dropdown');
+
+console.log(dropdown.value); // get current value
+dropdown.value = "BCS";      // set value programmatically
+```
+When a selection is made, the component automatically updates its internal state and keeps a hidden input in sync for form submission.
+
+## Validation API
+The component provides lightweight validation methods that can be used externally (e.g., in form flows or wizards).
+
+```js
+dropdown.checkValidity();   // returns true/false (no UI side effects)
+dropdown.reportValidity();  // returns true/false + applies aria-invalid state
+dropdown.isValid();         // convenience wrapper (same behavior as reportValidity)
+```
+
+Validation is opt-in and only enforced when the required attribute is present.
+```html
+<f-dropdown name="programme" required>
+```
+If required is not set, the dropdown is always considered valid.
+
+To check whether a dropdown is required:
+```js
+dropdown.isRequired(); // returns true if "required" attribute exists
+```
+This allows flexiable usage where the same component can be used as either a required form field or a non-required UI selector.
+
+> [!NOTE]  
+> - The component is NOT automatically included in native form validation.
+> - You must explicitly call checkValidity() or reportValidity() in your form logic.
+> - On selection, a hidden input is automatically created/updated to ensure compatibility with standard form submission (FormData)
 
 ## Features
 

@@ -4,7 +4,7 @@ class FDropdown extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.columns = [];
-    this.value = null;
+    this.value = "";
 
     this.active = { col: 0, row: 0 };
 
@@ -160,6 +160,38 @@ class FDropdown extends HTMLElement {
     this.setAttribute("tabindex", "0");
   
     this.buildTree();
+  }
+
+  get value() {
+    return this._value || "";
+  }
+  
+  set value(val) {
+    this._value = val || "";
+  }
+
+  checkValidity() {
+    return !!this.value?.toString().trim();
+  }
+  
+  reportValidity() {
+    const valid = this.checkValidity();
+  
+    if (!valid) {
+      this.setAttribute("aria-invalid", "true");
+    } else {
+      this.removeAttribute("aria-invalid");
+    }
+  
+    return valid;
+  }
+
+  isRequired() {
+    return this.hasAttribute("required");
+  }
+
+  isValid() {
+    return this.reportValidity();
   }
 
   setTheme(values = {}) {
@@ -409,27 +441,31 @@ class FDropdown extends HTMLElement {
 
   selectValue(value, label) {
     this.value = value;
-
+  
     let input = this.querySelector("input[type='hidden']");
-
+  
     if (!input) {
       input = document.createElement("input");
       input.type = "hidden";
       input.name = this.getAttribute("name");
       this.appendChild(input);
     }
-
+  
     input.value = value;
-
+  
+    this._value = value;
+  
     this.triggerTextEl.textContent = label;
-
+  
     this.dispatchEvent(
       new CustomEvent("f-select", {
         detail: { value, label },
         bubbles: true
       })
     );
-
+  
+    this.removeAttribute("aria-invalid");
+  
     this.close();
   }
 }
